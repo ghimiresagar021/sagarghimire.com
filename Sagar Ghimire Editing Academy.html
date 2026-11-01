@@ -1,0 +1,635 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Sagar Ghimire Editing Academy</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<script src="https://cdn.tailwindcss.com/3.4.17"></script>
+<script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js"></script>
+<style>
+  /* Layout: sticky bar, hero beside a video-timeline panel, then banded sections on obsidian. Single dark look by choice. */
+  :root {
+    --bg: #0a0a0a;
+    --surface: #101213;
+    --surface-2: #161a1c;
+    --line: rgba(148, 170, 180, 0.16);
+    --fg: #e8eef0;
+    --muted: #8c99a2;
+    --cyan: #22d3ee;
+    --emerald: #34d399;
+    --ink: #04130f;
+    --bar: rgba(10, 10, 10, 0.82);
+    --grad: linear-gradient(110deg, #22d3ee 0%, #34d399 100%);
+    --font-display: 'Bricolage Grotesque', 'Segoe UI', system-ui, sans-serif;
+    --font-body: 'Instrument Sans', 'Segoe UI', system-ui, sans-serif;
+    --font-mono: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+    color-scheme: dark;
+  }
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--fg); font-family: var(--font-body); font-size: 16px; line-height: 1.6; }
+  body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 60; background: var(--bg); }
+  h1, h2, h3 { font-family: var(--font-display); text-wrap: balance; letter-spacing: -0.02em; line-height: 1.08; }
+  :focus-visible { outline: 2px solid var(--cyan); outline-offset: 3px; border-radius: 6px; }
+
+  .shell { padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+  .wrap { max-width: 72rem; margin-inline: auto; }
+  .sec { padding-block: 5rem; scroll-margin-top: 4.5rem; }
+  .eyebrow { font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--cyan); }
+  .lead { color: var(--muted); max-width: 62ch; }
+  .ic { width: 1.15rem; height: 1.15rem; flex: none; }
+  .ic-lg { width: 1.5rem; height: 1.5rem; flex: none; }
+  .grad-text { background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+  /* header */
+  .bar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 50; background: var(--bar); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-bottom: 1px solid var(--line); }
+  .bar-in { display: flex; align-items: center; justify-content: space-between; gap: 1rem; height: 4rem; }
+  .logo { display: flex; align-items: center; gap: 0.6rem; font-family: var(--font-display); font-weight: 800; letter-spacing: 0.04em; font-size: 1.02rem; text-decoration: none; color: var(--fg); }
+  .nav a.link { color: var(--muted); text-decoration: none; font-size: 0.92rem; padding: 0.4rem 0.7rem; border-radius: 8px; transition: color .15s, background .15s; }
+  .nav a.link:hover { color: var(--fg); background: rgba(255,255,255,0.05); }
+  .mobile-menu { border-top: 1px solid var(--line); background: var(--bg); }
+  .mobile-menu a.link { display: block; padding: 0.85rem 0; color: var(--fg); text-decoration: none; border-bottom: 1px solid var(--line); }
+
+  /* buttons */
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; padding: 0.8rem 1.25rem; border-radius: 10px; font-weight: 600; font-size: 0.95rem; text-decoration: none; cursor: pointer; border: 1px solid transparent; font-family: var(--font-body); transition: transform .15s, box-shadow .15s, background .15s; }
+  .btn-primary { background: var(--grad); color: var(--ink); box-shadow: 0 8px 30px -10px rgba(34, 211, 238, 0.55); }
+  .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 12px 34px -10px rgba(52, 211, 153, 0.7); }
+  .btn-ghost { background: transparent; color: var(--fg); border-color: var(--line); }
+  .btn-ghost:hover { background: rgba(255,255,255,0.06); border-color: rgba(148,170,180,0.35); }
+  .btn-sm { padding: 0.55rem 1rem; font-size: 0.88rem; }
+
+  /* glass card */
+  .glass { background: linear-gradient(180deg, rgba(255,255,255,0.045), rgba(255,255,255,0.015)); border: 1px solid var(--line); border-radius: 16px; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
+
+  /* hero */
+  .hero { padding-block: 4rem 4.5rem; background: radial-gradient(60rem 28rem at 78% -10%, rgba(34,211,238,0.12), transparent 60%), radial-gradient(40rem 24rem at 0% 30%, rgba(52,211,153,0.08), transparent 60%); }
+  .h1 { font-size: clamp(2.35rem, 6.4vw, 4.4rem); font-weight: 800; }
+  .badge { display: inline-flex; align-items: center; gap: 0.45rem; padding: 0.4rem 0.8rem; border: 1px solid var(--line); border-radius: 999px; font-size: 0.82rem; color: var(--fg); background: rgba(255,255,255,0.03); }
+  .badge .ic { color: var(--emerald); width: 1rem; height: 1rem; }
+
+  /* timeline panel */
+  .nle { padding: 1rem; }
+  .nle-top { display: flex; justify-content: space-between; align-items: center; gap: 0.5rem; font-family: var(--font-mono); font-size: 0.72rem; color: var(--muted); padding-bottom: 0.75rem; }
+  .nle-top b { color: var(--cyan); font-weight: 500; }
+  .nle-body { position: relative; display: grid; grid-template-columns: 2.4rem minmax(0, 1fr); gap: 0.4rem 0.5rem; }
+  .ruler { grid-column: 2; height: 1.2rem; border-bottom: 1px solid var(--line); background: repeating-linear-gradient(90deg, var(--line) 0 1px, transparent 1px 8.333%); }
+  .tl { font-family: var(--font-mono); font-size: 0.68rem; color: var(--muted); align-self: center; }
+  .track { position: relative; height: 2.1rem; background: rgba(255,255,255,0.025); border-radius: 6px; overflow: hidden; }
+  .clip { position: absolute; top: 3px; bottom: 3px; border-radius: 4px; padding: 0 0.45rem; display: flex; align-items: center; font-family: var(--font-mono); font-size: 0.64rem; white-space: nowrap; overflow: hidden; color: #031a1f; }
+  .c-cyan { background: linear-gradient(180deg, #4fe0f5, #22b8d1); }
+  .c-em { background: linear-gradient(180deg, #5eead4, #2fb98c); }
+  .c-slate { background: linear-gradient(180deg, #8da2ad, #627783); }
+  .c-wave { background: repeating-linear-gradient(90deg, #2fb98c 0 2px, #1c6f56 2px 4px, #2fb98c 4px 5px, #1c6f56 5px 9px); }
+  .playhead { position: absolute; top: 0; bottom: 0; left: 36%; width: 0; z-index: 3; pointer-events: none; }
+  .playhead::before { content: ""; position: absolute; top: 0; bottom: 0; left: -1px; width: 2px; background: #fff; box-shadow: 0 0 12px rgba(34,211,238,0.9); }
+  .playhead::after { content: ""; position: absolute; top: -2px; left: -6px; width: 12px; height: 10px; background: #fff; clip-path: polygon(0 0, 100% 0, 50% 100%); }
+  .ph-wrap { position: absolute; top: 0; bottom: 0; left: calc(2.4rem + 0.5rem); right: 0; }
+  @keyframes sweep { from { left: 6%; } to { left: 94%; } }
+  @media (prefers-reduced-motion: no-preference) { .playhead { animation: sweep 16s ease-in-out infinite alternate; } }
+
+  /* skills */
+  .skill { padding: 1.25rem; }
+  .meter { height: 8px; border-radius: 999px; background: rgba(255,255,255,0.07); overflow: hidden; }
+  .meter > i { display: block; height: 100%; width: var(--w); border-radius: inherit; background: var(--grad); }
+  .lvl { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--emerald); }
+  .chip { padding: 0.45rem 0.85rem; border: 1px solid var(--line); border-radius: 999px; font-size: 0.9rem; background: var(--surface); }
+
+  /* experience */
+  .rail { border-left: 1px solid var(--line); margin-left: 0.55rem; padding-left: 1.5rem; display: grid; gap: 2rem; }
+  .rail > div { position: relative; }
+  .rail > div::before { content: ""; position: absolute; left: calc(-1.5rem - 5px); top: 0.5rem; width: 9px; height: 9px; border-radius: 50%; background: var(--grad); box-shadow: 0 0 0 4px var(--bg); }
+
+  /* academy */
+  .tier { padding: 1.75rem; display: flex; flex-direction: column; gap: 1.25rem; min-width: 0; }
+  .tier.pro { position: relative; border: 1px solid transparent; background: linear-gradient(var(--surface), var(--surface)) padding-box, var(--grad) border-box; border-radius: 16px; box-shadow: 0 30px 80px -40px rgba(34, 211, 238, 0.45); }
+  .pill { display: inline-block; padding: 0.25rem 0.7rem; border-radius: 999px; font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.12em; background: var(--grad); color: var(--ink); font-weight: 500; }
+  .pill-quiet { background: rgba(255,255,255,0.07); color: var(--muted); }
+  .feat { display: grid; gap: 0.7rem; }
+  .feat li { display: flex; gap: 0.65rem; align-items: flex-start; font-size: 0.95rem; }
+  .feat .ic { color: var(--emerald); margin-top: 0.2rem; width: 1rem; height: 1rem; }
+  .cmp { width: 100%; min-width: 34rem; border-collapse: collapse; font-size: 0.93rem; }
+  .cmp th, .cmp td { padding: 0.85rem 1rem; text-align: left; border-bottom: 1px solid var(--line); }
+  .cmp thead th { font-family: var(--font-display); font-size: 0.95rem; color: var(--fg); }
+  .cmp td.c, .cmp th.c { text-align: center; width: 8.5rem; }
+  .cmp tbody th { font-weight: 400; color: var(--fg); }
+  .cmp .on { color: var(--emerald); }
+  .cmp .off { color: #4b5860; }
+  .cmp .pro-col { background: rgba(34, 211, 238, 0.05); }
+  details.mod { border: 1px solid var(--line); border-radius: 12px; background: var(--surface); }
+  details.mod + details.mod { margin-top: 0.6rem; }
+  details.mod summary { list-style: none; cursor: pointer; padding: 1rem 1.15rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; font-weight: 600; }
+  details.mod summary::-webkit-details-marker { display: none; }
+  details.mod summary .ic { transition: transform .2s; color: var(--muted); }
+  details.mod[open] summary .ic { transform: rotate(180deg); }
+  details.mod p { padding: 0 1.15rem 1.1rem; color: var(--muted); margin: 0; }
+
+  /* portfolio */
+  .frame-wrap { display: grid; place-items: center; height: 13rem; background: radial-gradient(circle at 50% 40%, rgba(34,211,238,0.12), transparent 70%), var(--surface); border-radius: 12px; border: 1px solid var(--line); }
+  .frame { max-width: 80%; max-height: 82%; border: 1px solid rgba(34,211,238,0.5); border-radius: 6px; background: linear-gradient(135deg, rgba(34,211,238,0.18), rgba(52,211,153,0.12)); display: grid; place-items: center; color: var(--cyan); box-shadow: 0 0 40px -12px rgba(34,211,238,0.5); }
+  .ratio { font-family: var(--font-mono); font-size: 0.72rem; color: var(--muted); }
+
+  /* contact */
+  .field { display: grid; gap: 0.4rem; min-width: 0; }
+  .field label { font-size: 0.85rem; color: var(--muted); }
+  .input { width: 100%; padding: 0.8rem 0.95rem; border-radius: 10px; border: 1px solid var(--line); background: var(--surface); color: var(--fg); font: inherit; }
+  .input:focus { outline: 2px solid var(--cyan); outline-offset: 1px; border-color: transparent; }
+  .input::placeholder { color: #55626b; }
+  .copy { border: 1px solid var(--line); background: transparent; color: var(--muted); border-radius: 8px; padding: 0.35rem 0.6rem; font-size: 0.78rem; cursor: pointer; display: inline-flex; gap: 0.35rem; align-items: center; font-family: var(--font-body); }
+  .copy:hover { color: var(--fg); border-color: rgba(148,170,180,0.4); }
+  .contact-row { display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; flex-wrap: wrap; padding: 1rem 1.15rem; }
+  .contact-row .val { font-family: var(--font-mono); font-size: 0.95rem; overflow-wrap: anywhere; min-width: 0; }
+  footer { border-top: 1px solid var(--line); }
+</style>
+
+<div id="home"></div>
+
+<header class="bar">
+  <div class="shell">
+    <div class="wrap bar-in">
+      <a href="#home" class="logo" data-go="home" aria-label="Sagar Ghimire, home">
+        <svg width="26" height="26" viewBox="0 0 26 26" aria-hidden="true"><rect x="1" y="1" width="24" height="24" rx="6" fill="none" stroke="#22d3ee" stroke-width="1.6"/><path d="M9 7.5v11l9-5.5z" fill="#34d399"/></svg>
+        SAGAR GHIMIRE
+      </a>
+      <nav class="nav hidden lg:flex items-center gap-1" aria-label="Main">
+        <a class="link" href="#home" data-go="home">Home</a>
+        <a class="link" href="#about" data-go="about">About</a>
+        <a class="link" href="#skills" data-go="skills">Skills</a>
+        <a class="link" href="#experience" data-go="experience">Experience</a>
+        <a class="link" href="#courses" data-go="courses">Courses</a>
+        <a class="link" href="#portfolio" data-go="portfolio">Portfolio</a>
+        <a class="link" href="#contact" data-go="contact">Contact</a>
+      </nav>
+      <div class="flex items-center gap-2">
+        <a href="#courses" data-go="courses" class="btn btn-primary btn-sm">Join Masterclass</a>
+        <button id="menuBtn" class="btn btn-ghost btn-sm lg:hidden" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu" style="padding:0.55rem 0.65rem">
+          <i data-lucide="menu" class="ic" id="menuIcon"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div id="mobileMenu" class="mobile-menu lg:hidden" hidden>
+    <div class="shell">
+      <div class="wrap" style="padding-block:0.4rem 0.8rem">
+        <a class="link" href="#home" data-go="home">Home</a>
+        <a class="link" href="#about" data-go="about">About</a>
+        <a class="link" href="#skills" data-go="skills">Skills</a>
+        <a class="link" href="#experience" data-go="experience">Experience</a>
+        <a class="link" href="#courses" data-go="courses">Courses</a>
+        <a class="link" href="#portfolio" data-go="portfolio">Portfolio</a>
+        <a class="link" href="#contact" data-go="contact">Contact</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+<!-- HERO -->
+<section class="hero">
+  <div class="shell">
+    <div class="wrap grid gap-12 lg:grid-cols-12 items-center">
+      <div class="lg:col-span-7 min-w-0">
+        <p class="eyebrow">Video Editor · Graphic Designer · Educator</p>
+        <h1 class="h1 mt-4">Visual stories, <span class="grad-text">cut to keep people watching.</span></h1>
+        <p class="lead mt-5" style="font-size:1.08rem">1+ Year Experience in Production &amp; Media Field | Mastering Premiere Pro, Photoshop &amp; Videography</p>
+        <div class="mt-8 flex flex-wrap gap-3">
+          <a href="#courses" data-go="courses" class="btn btn-primary"><i data-lucide="graduation-cap" class="ic"></i>Explore Free &amp; Paid Courses</a>
+          <a href="#portfolio" data-go="portfolio" class="btn btn-ghost">View Portfolio / Contact<i data-lucide="arrow-right" class="ic"></i></a>
+        </div>
+        <div class="mt-8 flex flex-wrap gap-2">
+          <span class="badge"><i data-lucide="badge-check" class="ic"></i>1+ Year Field Exp</span>
+          <span class="badge"><i data-lucide="badge-check" class="ic"></i>MCT Certified/Experienced</span>
+          <span class="badge"><i data-lucide="badge-check" class="ic"></i>Full-Stack Video Creator</span>
+        </div>
+      </div>
+
+      <div class="lg:col-span-5 min-w-0" aria-hidden="true">
+        <div class="glass nle">
+          <div class="nle-top"><span>SEQ_01 · 1920×1080 · 25 fps</span><b>00:01:12:08</b></div>
+          <div class="nle-body">
+            <div class="ph-wrap"><div class="playhead"></div></div>
+            <div></div><div class="ruler"></div>
+            <div class="tl">V2</div>
+            <div class="track">
+              <div class="clip c-slate" style="left:6%;width:26%">Title_lower3rd</div>
+              <div class="clip c-cyan" style="left:48%;width:30%">Thumb_overlay</div>
+            </div>
+            <div class="tl">V1</div>
+            <div class="track">
+              <div class="clip c-cyan" style="left:0;width:34%">A_cam_01</div>
+              <div class="clip c-em" style="left:35%;width:22%">B_roll_03</div>
+              <div class="clip c-cyan" style="left:58%;width:24%">A_cam_02</div>
+              <div class="clip c-em" style="left:83%;width:17%">Outro</div>
+            </div>
+            <div class="tl">A1</div>
+            <div class="track"><div class="clip c-wave" style="left:0;width:100%"></div></div>
+            <div class="tl">A2</div>
+            <div class="track"><div class="clip c-slate" style="left:0;width:72%">Music_bed_mix</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="sec">
+  <div class="shell">
+    <div class="wrap grid gap-10 lg:grid-cols-12">
+      <div class="lg:col-span-5 min-w-0">
+        <p class="eyebrow">About</p>
+        <h2 class="text-3xl md:text-4xl font-bold mt-3">Edits, graphics and the shoot behind them.</h2>
+      </div>
+      <div class="lg:col-span-7 min-w-0">
+        <p class="lead" style="font-size:1.05rem">I am Sagar Ghimire, a video editor and graphic designer who loves building a video from the first frame to the final export. I work in production house and MCT environments, where deadlines are real and every cut has to earn its place. I edit, design the thumbnails and covers that go with the edit, and handle basic camera setup on shoots. I also teach what I do through the Sagar Ghimire Editing Academy.</p>
+        <h3 class="text-lg font-semibold mt-8">What I edit</h3>
+        <div class="mt-3 flex flex-wrap gap-2">
+          <span class="chip">Reels / Shorts</span>
+          <span class="chip">YouTube long-form</span>
+          <span class="chip">Documentaries</span>
+          <span class="chip">Promotional ads</span>
+          <span class="chip">Commercials</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills" class="sec" style="background:var(--surface);border-block:1px solid var(--line)">
+  <div class="shell">
+    <div class="wrap">
+      <p class="eyebrow">Skills</p>
+      <h2 class="text-3xl md:text-4xl font-bold mt-3">The software stack</h2>
+      <div class="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <div class="glass skill min-w-0">
+          <div class="flex items-start justify-between gap-3"><i data-lucide="scissors" class="ic-lg" style="color:var(--cyan)"></i><span class="lvl">Advanced</span></div>
+          <h3 class="text-lg font-bold mt-4">Adobe Premiere Pro</h3>
+          <p class="text-sm mt-1" style="color:var(--muted)">Video editing and color grading</p>
+          <div class="meter mt-4"><i style="--w:88%"></i></div>
+        </div>
+        <div class="glass skill min-w-0">
+          <div class="flex items-start justify-between gap-3"><i data-lucide="image" class="ic-lg" style="color:var(--cyan)"></i><span class="lvl">Advanced</span></div>
+          <h3 class="text-lg font-bold mt-4">Adobe Photoshop</h3>
+          <p class="text-sm mt-1" style="color:var(--muted)">Thumbnails and graphic design</p>
+          <div class="meter mt-4"><i style="--w:88%"></i></div>
+        </div>
+        <div class="glass skill min-w-0">
+          <div class="flex items-start justify-between gap-3"><i data-lucide="layout-template" class="ic-lg" style="color:var(--cyan)"></i><span class="lvl">Proficient</span></div>
+          <h3 class="text-lg font-bold mt-4">Canva</h3>
+          <p class="text-sm mt-1" style="color:var(--muted)">Fast design solutions</p>
+          <div class="meter mt-4"><i style="--w:72%"></i></div>
+        </div>
+        <div class="glass skill min-w-0">
+          <div class="flex items-start justify-between gap-3"><i data-lucide="sparkles" class="ic-lg" style="color:var(--cyan)"></i><span class="lvl">Basic</span></div>
+          <h3 class="text-lg font-bold mt-4">Adobe After Effects</h3>
+          <p class="text-sm mt-1" style="color:var(--muted)">Basic motion graphics and visual FX</p>
+          <div class="meter mt-4"><i style="--w:48%"></i></div>
+        </div>
+        <div class="glass skill min-w-0">
+          <div class="flex items-start justify-between gap-3"><i data-lucide="camera" class="ic-lg" style="color:var(--cyan)"></i><span class="lvl">Basic</span></div>
+          <h3 class="text-lg font-bold mt-4">Camera &amp; Videography</h3>
+          <p class="text-sm mt-1" style="color:var(--muted)">Framing, lighting, basic shoot setup</p>
+          <div class="meter mt-4"><i style="--w:48%"></i></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience" class="sec">
+  <div class="shell">
+    <div class="wrap grid gap-10 lg:grid-cols-12">
+      <div class="lg:col-span-5 min-w-0">
+        <p class="eyebrow">Experience</p>
+        <h2 class="text-3xl md:text-4xl font-bold mt-3">Hands-on in the production field</h2>
+        <p class="lead mt-4">One year and counting in production house and MCT environments.</p>
+      </div>
+      <div class="lg:col-span-7 min-w-0">
+        <div class="rail">
+          <div>
+            <p class="ratio">1+ year · Production house / MCT</p>
+            <h3 class="text-xl font-bold mt-1">Video Editor &amp; Graphic Designer</h3>
+            <p class="mt-2" style="color:var(--muted)">Editing for reels, YouTube, documentaries and ads in Premiere Pro, with thumbnails and cover art built in Photoshop and Canva. Light motion graphics in After Effects.</p>
+          </div>
+          <div>
+            <p class="ratio">On set</p>
+            <h3 class="text-xl font-bold mt-1">Field videography support</h3>
+            <p class="mt-2" style="color:var(--muted)">Framing, lighting and basic camera setup for shoots, so the footage arrives in the edit ready to cut.</p>
+          </div>
+          <div>
+            <p class="ratio">Ongoing</p>
+            <h3 class="text-xl font-bold mt-1">Educator, Editing Academy</h3>
+            <p class="mt-2" style="color:var(--muted)">Structured online classes for beginners and aspiring professionals, from the first cut to a full production workflow.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COURSES -->
+<section id="courses" class="sec" style="background:radial-gradient(50rem 24rem at 50% 0%, rgba(34,211,238,0.08), transparent 70%), var(--surface);border-block:1px solid var(--line)">
+  <div class="shell">
+    <div class="wrap">
+      <p class="eyebrow">Online classes</p>
+      <h2 class="text-3xl md:text-5xl font-extrabold mt-3">Sagar Ghimire <span class="grad-text">Editing Academy</span></h2>
+      <p class="lead mt-4">Learn video editing the way it is done on a real job. Start free, then move to the full masterclass when you are ready to work like a professional.</p>
+
+      <div class="mt-10 grid gap-5 lg:grid-cols-2">
+        <article class="glass tier">
+          <div>
+            <span class="pill pill-quiet">FREE</span>
+            <h3 class="text-2xl font-bold mt-3">Starter Video Editing</h3>
+            <p class="mt-2 text-sm" style="color:var(--muted)">For beginners who want a quick jumpstart.</p>
+          </div>
+          <ul class="feat">
+            <li><i data-lucide="check" class="ic"></i>Basic cutting, trimming and timeline assembly</li>
+            <li><i data-lucide="check" class="ic"></i>Basic audio syncing</li>
+            <li><i data-lucide="check" class="ic"></i>Free asset bundle (short sound effects list)</li>
+            <li><i data-lucide="check" class="ic"></i>Access to sample lessons</li>
+          </ul>
+          <button class="btn btn-ghost mt-auto" data-enroll="free" type="button"><i data-lucide="play" class="ic"></i>Start Learning for Free</button>
+        </article>
+
+        <article class="tier pro">
+          <div class="flex flex-wrap items-center gap-2">
+            <span class="pill">POPULAR</span>
+            <span class="ratio">Paid masterclass</span>
+          </div>
+          <div>
+            <h3 class="text-2xl font-bold">Complete Video Production &amp; After Effects Masterclass</h3>
+            <p class="mt-2 text-sm" style="color:var(--muted)">For aspiring professionals who want full production skills and higher-paying work.</p>
+          </div>
+          <ul class="feat">
+            <li><i data-lucide="check" class="ic"></i>Everything in Free, plus:</li>
+            <li><i data-lucide="check" class="ic"></i>Advanced Premiere Pro: color grading, multi-cam, transitions, sound design</li>
+            <li><i data-lucide="check" class="ic"></i>Complete After Effects: keyframing, motion graphics, VFX basics</li>
+            <li><i data-lucide="check" class="ic"></i>Field videography and camera setup: lighting, angles, audio recording</li>
+            <li><i data-lucide="check" class="ic"></i>Photoshop integration: custom thumbnails and cover art</li>
+            <li><i data-lucide="check" class="ic"></i>Full production workflow, pre-production to final export</li>
+            <li><i data-lucide="check" class="ic"></i>Private community and direct Q&amp;A support with Sagar</li>
+            <li><i data-lucide="check" class="ic"></i>Project files and premium asset packs included</li>
+          </ul>
+          <button class="btn btn-primary mt-auto" data-enroll="paid" type="button"><i data-lucide="rocket" class="ic"></i>Enroll Now in Paid Masterclass</button>
+        </article>
+      </div>
+      <p class="mt-4 text-sm" style="color:var(--muted)">Message Sagar for current batch dates and fee details.</p>
+
+      <!-- Comparison -->
+      <h3 class="text-2xl font-bold mt-16">Free vs Paid at a glance</h3>
+      <div class="glass mt-5" style="overflow-x:auto">
+        <table class="cmp">
+          <thead>
+            <tr><th scope="col">What you get</th><th scope="col" class="c">Free</th><th scope="col" class="c pro-col">Masterclass</th></tr>
+          </thead>
+          <tbody>
+            <tr><th scope="row">Basic cutting, trimming, timeline assembly</th><td class="c"><span class="on"><i data-lucide="check" class="ic"></i></span><span class="sr">Included</span></td><td class="c pro-col"><span class="on"><i data-lucide="check" class="ic"></i></span><span class="sr">Included</span></td></tr>
+            <tr><th scope="row">Basic audio syncing</th><td class="c"><span class="on"><i data-lucide="check" class="ic"></i></span><span class="sr">Included</span></td><td class="c pro-col"><span class="on"><i data-lucide="check" class="ic"></i></span><span class="sr">Included</span></td></tr>
+            <tr><th scope="row">Sample lessons</th><td class="c"><span class="on"><i data-lucide="check" class="ic"></i></span><span class="sr">Included</span></td><td class="c pro-col"><span class="on"><i data-lucide="check" class="ic"></i></span><span class="sr">Included</span></td></tr>
+            <tr><th scope="row">Advanced Premiere Pro</th><td class="c"><span class="off"><i data-lucide="minus" class="ic"></i></span><span class="sr">Not included</span></td><td class="c pro-col"><span class="on"><i data-lucide="check" class="ic"></i></span><span class="sr">Included</span></td></tr>
+            <tr><th scope="row">Complete After Effects</th><td class="c"><span class="off"><i data-lucide="minus" class="ic"></i></span><span class="sr">Not included</span></td><td class="c pro-col"><span class="on"><i data-lucide="check" class="ic"></i></span><span class="sr">Included</span></td></tr>
+            <tr><th scope="row">Field videography and camera setup</th><td class="c"><span class="off"><i data-lucide="minus" class="ic"></i></span><span class="sr">Not included</span></td><td class="c pro-col"><span class="on"><i data-lucide="check" class="ic"></i></span><span class="sr">Included</span></td></tr>
+            <tr><th scope="row">Photoshop thumbnails and cover art</th><td class="c"><span class="off"><i data-lucide="minus" class="ic"></i></span><span class="sr">Not included</span></td><td class="c pro-col"><span class="on"><i data-lucide="check" class="ic"></i></span><span class="sr">Included</span></td></tr>
+            <tr><th scope="row">Full production workflow</th><td class="c"><span class="off"><i data-lucide="minus" class="ic"></i></span><span class="sr">Not included</span></td><td class="c pro-col"><span class="on"><i data-lucide="check" class="ic"></i></span><span class="sr">Included</span></td></tr>
+            <tr><th scope="row">Private community and direct Q&amp;A with Sagar</th><td class="c"><span class="off"><i data-lucide="minus" class="ic"></i></span><span class="sr">Not included</span></td><td class="c pro-col"><span class="on"><i data-lucide="check" class="ic"></i></span><span class="sr">Included</span></td></tr>
+            <tr><th scope="row">Sound effects bundle</th><td class="c"><span class="on"><i data-lucide="check" class="ic"></i></span><span class="sr">Short list</span></td><td class="c pro-col"><span class="on"><i data-lucide="check" class="ic"></i></span><span class="sr">Included</span></td></tr>
+            <tr><th scope="row">Project files and premium asset packs</th><td class="c"><span class="off"><i data-lucide="minus" class="ic"></i></span><span class="sr">Not included</span></td><td class="c pro-col"><span class="on"><i data-lucide="check" class="ic"></i></span><span class="sr">Included</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Modules -->
+      <h3 class="text-2xl font-bold mt-16">Inside the Masterclass</h3>
+      <div class="mt-5 max-w-3xl">
+        <details class="mod" open>
+          <summary>Advanced Premiere Pro<i data-lucide="chevron-down" class="ic"></i></summary>
+          <p>Color grading, multi-cam editing, transitions and sound design, taught on the kind of footage you meet on real jobs.</p>
+        </details>
+        <details class="mod">
+          <summary>Complete After Effects<i data-lucide="chevron-down" class="ic"></i></summary>
+          <p>Keyframing, motion graphics and VFX basics, from simple animated titles to layered scenes.</p>
+        </details>
+        <details class="mod">
+          <summary>Field videography and camera setup<i data-lucide="chevron-down" class="ic"></i></summary>
+          <p>Lighting, camera angles and audio recording, so what you shoot is easy to edit.</p>
+        </details>
+        <details class="mod">
+          <summary>Photoshop for video creators<i data-lucide="chevron-down" class="ic"></i></summary>
+          <p>Custom thumbnails and cover art that match the video they promote.</p>
+        </details>
+        <details class="mod">
+          <summary>Full production workflow<i data-lucide="chevron-down" class="ic"></i></summary>
+          <p>Pre-production, shooting, editing and final export, in one start-to-finish project with project files included.</p>
+        </details>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section id="portfolio" class="sec">
+  <div class="shell">
+    <div class="wrap">
+      <p class="eyebrow">Portfolio</p>
+      <h2 class="text-3xl md:text-4xl font-bold mt-3">Work by format</h2>
+      <p class="lead mt-4">Every format is cut for its own frame. Message Sagar on WhatsApp to see samples for the format you need.</p>
+
+      <div class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <article class="glass p-4 min-w-0">
+          <div class="frame-wrap"><div class="frame" style="aspect-ratio:9/16;height:100%"><i data-lucide="smartphone" class="ic-lg"></i></div></div>
+          <div class="flex items-baseline justify-between gap-3 mt-4"><h3 class="text-lg font-bold">Reels &amp; Shorts</h3><span class="ratio">9:16</span></div>
+          <p class="text-sm mt-1" style="color:var(--muted)">Fast, vertical edits with tight pacing and captions.</p>
+        </article>
+        <article class="glass p-4 min-w-0">
+          <div class="frame-wrap"><div class="frame" style="aspect-ratio:16/9;width:80%"><i data-lucide="youtube" class="ic-lg"></i></div></div>
+          <div class="flex items-baseline justify-between gap-3 mt-4"><h3 class="text-lg font-bold">YouTube Long-form</h3><span class="ratio">16:9</span></div>
+          <p class="text-sm mt-1" style="color:var(--muted)">Full episodes with pacing, sound design and graphics.</p>
+        </article>
+        <article class="glass p-4 min-w-0">
+          <div class="frame-wrap"><div class="frame" style="aspect-ratio:2.39/1;width:84%"><i data-lucide="film" class="ic-lg"></i></div></div>
+          <div class="flex items-baseline justify-between gap-3 mt-4"><h3 class="text-lg font-bold">Documentaries</h3><span class="ratio">2.39:1</span></div>
+          <p class="text-sm mt-1" style="color:var(--muted)">Story-first cuts with interviews, b-roll and color grading.</p>
+        </article>
+        <article class="glass p-4 min-w-0">
+          <div class="frame-wrap"><div class="frame" style="aspect-ratio:1/1;height:80%"><i data-lucide="megaphone" class="ic-lg"></i></div></div>
+          <div class="flex items-baseline justify-between gap-3 mt-4"><h3 class="text-lg font-bold">Promotional Ads</h3><span class="ratio">1:1 · 4:5</span></div>
+          <p class="text-sm mt-1" style="color:var(--muted)">Short promos built for social feeds.</p>
+        </article>
+        <article class="glass p-4 min-w-0">
+          <div class="frame-wrap"><div class="frame" style="aspect-ratio:16/9;width:80%"><i data-lucide="clapperboard" class="ic-lg"></i></div></div>
+          <div class="flex items-baseline justify-between gap-3 mt-4"><h3 class="text-lg font-bold">Commercials</h3><span class="ratio">16:9</span></div>
+          <p class="text-sm mt-1" style="color:var(--muted)">Polished brand spots with clean grading and sound.</p>
+        </article>
+        <article class="glass p-4 min-w-0">
+          <div class="frame-wrap"><div class="frame" style="aspect-ratio:16/9;width:80%"><i data-lucide="image" class="ic-lg"></i></div></div>
+          <div class="flex items-baseline justify-between gap-3 mt-4"><h3 class="text-lg font-bold">Thumbnails &amp; Graphics</h3><span class="ratio">1280×720</span></div>
+          <p class="text-sm mt-1" style="color:var(--muted)">Photoshop and Canva designs that earn the click.</p>
+        </article>
+      </div>
+      <div class="mt-8">
+        <a class="btn btn-ghost" href="https://wa.me/9779701374657?text=Hi%20Sagar%2C%20I%20would%20like%20to%20see%20your%20portfolio." target="_blank" rel="noopener"><i data-lucide="message-circle" class="ic"></i>Ask for samples on WhatsApp</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="sec" style="background:var(--surface);border-top:1px solid var(--line)">
+  <div class="shell">
+    <div class="wrap grid gap-10 lg:grid-cols-12">
+      <div class="lg:col-span-5 min-w-0">
+        <p class="eyebrow">Contact &amp; booking</p>
+        <h2 class="text-3xl md:text-4xl font-bold mt-3">Let's work on your next video.</h2>
+        <p class="lead mt-4">Book editing or graphic design work, or ask about the Academy.</p>
+        <div class="mt-8 grid gap-3">
+          <div class="glass contact-row">
+            <div class="min-w-0"><p class="ratio">Phone / WhatsApp</p><p class="val" id="phoneVal">+977 9701374657</p></div>
+            <div class="flex gap-2">
+              <a class="btn btn-primary btn-sm" href="https://wa.me/9779701374657" target="_blank" rel="noopener"><i data-lucide="message-circle" class="ic"></i>WhatsApp</a>
+              <button class="copy" type="button" data-copy="+9779701374657" data-target="phoneVal"><i data-lucide="copy" class="ic" style="width:.85rem;height:.85rem"></i><span>Copy</span></button>
+            </div>
+          </div>
+          <div class="glass contact-row">
+            <div class="min-w-0"><p class="ratio">Email</p><p class="val" id="mailVal">sagarghimire378@gmail.com</p></div>
+            <button class="copy" type="button" data-copy="sagarghimire378@gmail.com" data-target="mailVal"><i data-lucide="copy" class="ic" style="width:.85rem;height:.85rem"></i><span>Copy</span></button>
+          </div>
+        </div>
+      </div>
+
+      <div class="lg:col-span-7 min-w-0">
+        <form id="contactForm" class="glass p-5 sm:p-7 grid gap-4" novalidate>
+          <div class="grid gap-4 sm:grid-cols-2">
+            <div class="field"><label for="fName">Name</label><input class="input" id="fName" name="name" type="text" autocomplete="name" placeholder="Your name" required></div>
+            <div class="field"><label for="fEmail">Email</label><input class="input" id="fEmail" name="email" type="email" autocomplete="email" placeholder="you@example.com" required></div>
+          </div>
+          <div class="field">
+            <label for="fService">Service needed</label>
+            <select class="input" id="fService" name="service">
+              <option>Editing</option>
+              <option>Graphic Design</option>
+              <option>Course Enrollment</option>
+            </select>
+          </div>
+          <div class="field"><label for="fMsg">Message</label><textarea class="input" id="fMsg" name="message" rows="5" placeholder="Tell Sagar about your project or the course you want." required></textarea></div>
+          <button class="btn btn-primary" type="submit"><i data-lucide="send" class="ic"></i>Prepare my message</button>
+          <p id="formErr" class="text-sm" style="color:#fca5a5" hidden>Please fill in your name, a valid email and a message.</p>
+
+          <div id="formOut" hidden style="border-top:1px solid var(--line);padding-top:1rem">
+            <p class="text-sm" style="color:var(--muted)">Your message is ready. It has not been sent yet. Send it on WhatsApp, or copy it and email it.</p>
+            <pre id="outText" class="mt-3 p-3 text-sm" style="white-space:pre-wrap;overflow-wrap:anywhere;background:var(--bg);border:1px solid var(--line);border-radius:10px;font-family:var(--font-mono);margin:0"></pre>
+            <div class="mt-3 flex flex-wrap gap-2">
+              <a id="waLink" class="btn btn-primary btn-sm" href="https://wa.me/9779701374657" target="_blank" rel="noopener"><i data-lucide="message-circle" class="ic"></i>Send on WhatsApp</a>
+              <button id="copyMsg" class="copy" type="button" data-target="outText"><i data-lucide="copy" class="ic" style="width:.85rem;height:.85rem"></i><span>Copy message</span></button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="shell">
+    <div class="wrap flex flex-wrap items-center justify-between gap-4" style="padding-block:2rem">
+      <div class="min-w-0">
+        <p class="logo" style="font-size:.95rem">SAGAR GHIMIRE</p>
+        <p class="text-sm mt-1" style="color:var(--muted)">&copy; <span id="yr">2026</span> Sagar Ghimire. All rights reserved.</p>
+      </div>
+      <div class="flex items-center gap-2">
+        <a class="btn btn-ghost btn-sm" href="https://wa.me/9779701374657" target="_blank" rel="noopener"><i data-lucide="message-circle" class="ic"></i>WhatsApp</a>
+        <button class="btn btn-ghost btn-sm" type="button" data-go="contact"><i data-lucide="mail" class="ic"></i>Email</button>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function go(id) {
+    var el = document.getElementById(id);
+    if (!el) return;
+    el.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
+    closeMenu();
+  }
+  document.querySelectorAll('[data-go]').forEach(function (a) {
+    a.addEventListener('click', function (e) { e.preventDefault(); go(a.getAttribute('data-go')); });
+  });
+
+  // mobile menu
+  var menuBtn = document.getElementById('menuBtn');
+  var menu = document.getElementById('mobileMenu');
+  function closeMenu() { menu.hidden = true; menuBtn.setAttribute('aria-expanded', 'false'); }
+  menuBtn.addEventListener('click', function () {
+    var open = menu.hidden;
+    menu.hidden = !open;
+    menuBtn.setAttribute('aria-expanded', String(open));
+  });
+  window.addEventListener('resize', function () { if (window.innerWidth >= 1024) closeMenu(); });
+
+  // enroll buttons
+  var svc = document.getElementById('fService');
+  var msg = document.getElementById('fMsg');
+  document.querySelectorAll('[data-enroll]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var paid = b.getAttribute('data-enroll') === 'paid';
+      svc.value = 'Course Enrollment';
+      msg.value = paid
+        ? 'Hi Sagar, I want to enroll in the Complete Video Production & After Effects Masterclass. Please share the next batch dates and fee details.'
+        : 'Hi Sagar, I want to start the free Starter Video Editing course. Please tell me how to get access.';
+      go('contact');
+      setTimeout(function () { var n = document.getElementById('fName'); if (n) n.focus({ preventScroll: true }); }, reduce ? 0 : 600);
+    });
+  });
+
+  // copy helper
+  function selectText(id) {
+    var node = document.getElementById(id);
+    if (!node) return;
+    var r = document.createRange(); r.selectNodeContents(node);
+    var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+  }
+  function flash(btn, text) {
+    var span = btn.querySelector('span'); if (!span) return;
+    var old = span.getAttribute('data-old') || span.textContent;
+    span.setAttribute('data-old', old);
+    span.textContent = text;
+    setTimeout(function () { span.textContent = old; }, 1800);
+  }
+  document.querySelectorAll('.copy').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var target = btn.getAttribute('data-target');
+      var text = btn.getAttribute('data-copy') || (document.getElementById(target) || {}).textContent || '';
+      var fallback = function () { selectText(target); flash(btn, 'Selected, press copy'); };
+      try {
+        navigator.clipboard.writeText(text).then(function () { flash(btn, 'Copied'); }, fallback);
+      } catch (e) { fallback(); }
+    });
+  });
+
+  // contact form: builds a message, does not claim to send it
+  var form = document.getElementById('contactForm');
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var name = form.elements.name.value.trim();
+    var email = form.elements.email.value.trim();
+    var message = form.elements.message.value.trim();
+    var ok = name && message && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    document.getElementById('formErr').hidden = !!ok;
+    if (!ok) return;
+    var text = 'Hello Sagar, my name is ' + name + ' (' + email + ').\nService needed: ' + form.elements.service.value + '\n\n' + message;
+    document.getElementById('outText').textContent = text;
+    document.getElementById('waLink').href = 'https://wa.me/9779701374657?text=' + encodeURIComponent(text);
+    var out = document.getElementById('formOut');
+    out.hidden = false;
+    out.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'nearest' });
+  });
+
+  document.getElementById('yr').textContent = new Date().getFullYear();
+  if (window.lucide && lucide.createIcons) lucide.createIcons();
+})();
+</script>
+
+</body></html>
